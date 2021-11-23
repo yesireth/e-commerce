@@ -1,0 +1,12 @@
+<p>products</p>
+<button (click)="productelectronics()">electronics</button> 
+<button (click)="productJewelery()">jewelery</button> 
+<button (click)="menClothing()"  >men’s clothing</button>
+<button (click)="womenClothing()">women’s clothing</button>
+<section class="menu-section" >
+<ul class ="products-menu" *ngFor="let product of data">
+    <li>{{product.title}}</li>
+    <li>$.{{product.price}}</li>
+    <img src="{{product.image}}" alt="">
+</ul>
+</section>
