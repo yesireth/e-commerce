@@ -1,0 +1,32 @@
+
+.footer{
+    background-color: white;
+    height: 40px;
+    width: 90%;
+    padding: 15px;
+    display: flex;
+    justify-content: space-evenly; 
+    gap: 15px;
+    position: fixed;
+    bottom: 0;
+    left:0;
+}
+
+.btn-home{
+    background-color: #F8F6F8;
+    color: #F16B26 ;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    font-weight:600;
+    border-radius: 10px;
+    padding: 0 20px;
+}
+.btn-cart{
+   background-color: none;
+   padding: 0 20px;
+   color: #CCCCCC;
+   outline: none;
+   border: none;
+   font-size: 20px;
+}

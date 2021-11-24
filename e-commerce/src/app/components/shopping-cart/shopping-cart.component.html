@@ -1,1 +1,36 @@
-<p>shopping-cart works!</p>
+<article>
+    <header class="header">
+        <button class="btn-back"  routerLink='/products'>
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <p>My cart</p>
+    </header>
+    <main class="main">
+        <section class="container-products" >
+            <div class="cards-products" *ngFor="let product of data">
+                <div class="img-products-container">
+                    <img src="{{product.image}}" alt="" class="img-products">
+                </div>
+                <div class="info-products">
+                    <p class="name-products">{{product.title}}</p>
+                    <p class="category">{{product.category}}</p>
+                    <div class="price-box">
+                        <p class="product-price">${{product.price}}</p>
+                        <div class="container-amount">
+                            <button> <i class="fas fa-minus" ></i></button>
+                            <span class="name-amount">5</span>
+                            <button> <i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="footer">
+        <p>
+            <span>Total</span>
+            <span class="total">$5</span>
+        </p>
+        <button class="btn-buy">Buy Now</button>
+    </footer>
+</article>

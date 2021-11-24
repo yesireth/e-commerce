@@ -1,12 +1,22 @@
-<p>products</p>
-<button (click)="productelectronics()">electronics</button> 
-<button (click)="productJewelery()">jewelery</button> 
-<button (click)="menClothing()"  >men’s clothing</button>
-<button (click)="womenClothing()">women’s clothing</button>
-<section class="menu-section" >
-<ul class ="products-menu" *ngFor="let product of data">
-    <li>{{product.title}}</li>
-    <li>$.{{product.price}}</li>
-    <img src="{{product.image}}" alt="">
-</ul>
-</section>
+<article>
+    <app-header></app-header>
+    <main class="main">
+        <button (click)="productelectronics()">electronics</button> 
+        <button (click)="productJewelery()">jewelery</button> 
+        <button (click)="menClothing()"  >men’s clothing</button>
+        <button (click)="womenClothing()">women’s clothing</button> 
+        <section class="container-products" >
+            <div class="cards-products" *ngFor="let product of data">
+                <div class="img-products-container">
+                    <img src="{{product.image}}" alt="" class="img-products">
+                </div>
+                <div class="info-products">
+                    <p class="name-products">{{product.title}}</p>
+                    <p class="category">{{product.category}}</p>
+                    <p class="product-price">${{product.price}}</p>
+                </div>
+            </div>
+        </section>
+    </main>
+   <app-footer></app-footer>
+</article> 
