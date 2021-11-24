@@ -1,0 +1,4 @@
+<button (click)="clickTabCategory('all')">All</button> 
+<div   *ngFor="let category of ComunicacionProducts.listCategory">
+    <button (click)="clickTabCategory(category)">{{category}}</button> 
+</div>

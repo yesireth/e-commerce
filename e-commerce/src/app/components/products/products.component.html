@@ -1,12 +1,9 @@
 <article>
     <app-header></app-header>
     <main class="main">
-        <button (click)="productelectronics()">electronics</button> 
-        <button (click)="productJewelery()">jewelery</button> 
-        <button (click)="menClothing()"  >men’s clothing</button>
-        <button (click)="womenClothing()">women’s clothing</button> 
+        <app-categories></app-categories>
         <section class="container-products" >
-            <div class="cards-products" *ngFor="let product of data">
+            <div class="cards-products" *ngFor="let product of productsShow">
                 <div class="img-products-container">
                     <img src="{{product.image}}" alt="" class="img-products">
                 </div>

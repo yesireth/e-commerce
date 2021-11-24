@@ -1,44 +1,63 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {ProductsService} from '../../service/products.service'
+import { DataProductsService } from 'src/app/service/data-products.service';
+import { ProductsService } from '../../service/products.service'
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  
-  data: Array<any> = [];
+  category : string ="";
+  textFilter : string ="";
+  productsShow: Array<any> = [];
   products: Array<any> = [];
-  mensClothing: Array<any> = [];
-  womensClothing: Array<any> = [];
-  productsJewelery: Array<any> = [];
-  productselectronics: Array<any> = [];
 
-  constructor(public router: Router, private ProductsService: ProductsService) { }
+  constructor(public router: Router, 
+              private ProductsService: ProductsService,
+              private ComunicacionProducts : DataProductsService) { }
 
   ngOnInit(): void {
+    this.category ="all";
     this.ProductsService.products().subscribe(element =>{
-      this.data = element
-      console.log(this.data)})
+      this.products = element
+      this.productsShow = element
+      this.ComunicacionProducts.setArrayCategories(element)
+      console.log(this.productsShow)}
+    )
+      this.ComunicacionProducts.categorySelectedObservable.subscribe(response => {
+         this.category = response;
+         this.listProductsByFilters();
+     });
+     this.ComunicacionProducts.textFilterObservable.subscribe(response => {
+        this.textFilter=response;
+        this.listProductsByFilters();
+    });
+
+
   }
 
-  menClothing(){
-    this.mensClothing = this.data.filter((items) => items.category === 'men\'s clothing')
-    console.log( this.mensClothing);
+  listProductsByFilters(){
+    if(this.textFilter.trim()==""){  //si NO HAY  texto de buskeda
+      if(this.category.trim()=="all"){  //si la categoria es All (todos)
+        this.productsShow = this.products;
+      }
+      else this.productsShow = this.products.filter((items) => items.category === this.category)
+    }
+    else{ //si HAY  texto de buskeda 
+      if(this.category.trim()=="all"){  //si la categoria es All (todos)
+         this.productsShow = this.products.filter((items) =>
+          items.title.toLowerCase().includes(this.textFilter.toLowerCase().trim())  )
+      }
+      else{
+        this.productsShow = this.products.filter((items) => items.category === this.category &&
+        (items.title.toLowerCase().includes(this.textFilter.toLowerCase().trim()) ) ) 
+      }
+    }
   }
-  womenClothing(){
-    this.womensClothing = this.data.filter((items) => items.category === 'women\'s clothing')
-    console.log( this.womensClothing);
-  }
-  productJewelery(){
-    this.productsJewelery = this.data.filter((items) => items.category === 'jewelery')
-    console.log( this.productsJewelery);
-  }
-  productelectronics(){
 
-    this.productselectronics = this.data.filter((items) => items.category === 'electronics')
-    console.log( this.productselectronics);
-  }
+  //function agregar(){}
+  //  
+  //       this.ComunicacionProducts.setArrayCategories(arrayProductosSeleccionados) }
 
 }
