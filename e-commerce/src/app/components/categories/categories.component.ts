@@ -14,6 +14,8 @@ export class CategoriesComponent implements OnInit {
   }
   clickTabCategory(category : string){
     this.ComunicacionProducts.setCategorySelected(category);
-    //  alert("Usando el servicio DataProductsService, mandamos el valor mediante el metodo setCategorySelected, dicho valor será leido por el subscribe del componente products.component puesto en el ngOnInit 'categorySelectedObservable'")
+    console.log( this.ComunicacionProducts.listCategory);
+    // 
+     //alert("Usando el servicio DataProductsService, mandamos el valor mediante el metodo setCategorySelected, dicho valor será leido por el subscribe del componente products.component puesto en el ngOnInit 'categorySelectedObservable'")
   }
 }

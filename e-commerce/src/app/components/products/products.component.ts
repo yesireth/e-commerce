@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataProductsService } from 'src/app/service/data-products.service';
+import { Order, OrderDetail } from 'src/models/product-model';
 import { ProductsService } from '../../service/products.service'
 @Component({
   selector: 'app-products',
@@ -12,7 +13,13 @@ export class ProductsComponent implements OnInit {
   textFilter : string ="";
   productsShow: Array<any> = [];
   products: Array<any> = [];
+  show: any = true;
 
+  objOrder = new Order
+  objOrderDetail = new OrderDetail
+
+  mostrarVentanaAgregado: boolean = false;
+  
   constructor(public router: Router, 
               private ProductsService: ProductsService,
               private ComunicacionProducts : DataProductsService) { }
@@ -23,7 +30,9 @@ export class ProductsComponent implements OnInit {
       this.products = element
       this.productsShow = element
       this.ComunicacionProducts.setArrayCategories(element)
-      console.log(this.productsShow)}
+      console.log(this.productsShow)
+      
+    }
     )
       this.ComunicacionProducts.categorySelectedObservable.subscribe(response => {
          this.category = response;
@@ -33,8 +42,6 @@ export class ProductsComponent implements OnInit {
         this.textFilter=response;
         this.listProductsByFilters();
     });
-
-
   }
 
   listProductsByFilters(){
@@ -55,9 +62,48 @@ export class ProductsComponent implements OnInit {
       }
     }
   }
+  buyProducts(objProduct:any){
+    this.objOrderDetail = new OrderDetail
+    this.objOrderDetail.id =  objProduct.id;
+    this.objOrderDetail.qty =  1;
+    this.objOrderDetail.price =  objProduct.price;
+    this.objOrderDetail.title =  objProduct.title;
+    this.objOrderDetail.image =  objProduct.image;
+    this.objOrderDetail.description =  objProduct.description;
 
-  //function agregar(){}
-  //  
-  //       this.ComunicacionProducts.setArrayCategories(arrayProductosSeleccionados) }
+    const productsSelect = this.objOrder.products.find(element => element.id === objProduct.id);
+        if (productsSelect === undefined) { //si es nuevo 
+          this.objOrder.products.push(this.objOrderDetail);
+        }
+        else{ //en caso no sea nuevo, sumar uno a la cantidad
+          this.changeAmount(this.objOrderDetail);
+        }
+
+    this.mostrarMensaje();
+    localStorage.setItem("ls_objOrder",JSON.stringify(this.objOrder));
+  }
+  changeAmount(item: OrderDetail) {
+        this.objOrder.products= this.objOrder.products.map(e =>{
+          if(e.id==item.id){
+            e.qty++;
+          }
+          return e;
+        } )
+   }
+
+  async mostrarMensaje() {
+    this.mostrarVentanaAgregado=true;
+    const result = await this.habilitarDiv();
+    this.mostrarVentanaAgregado=false;
+  }
+   habilitarDiv() {
+    var promise = new Promise(function(resolve, reject) {
+      window.setTimeout(function() {
+        resolve(false);
+      },1500);
+    });
+    return promise;
+ }
+ 
 
 }

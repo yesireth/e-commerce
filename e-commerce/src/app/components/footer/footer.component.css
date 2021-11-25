@@ -29,4 +29,23 @@
    outline: none;
    border: none;
    font-size: 20px;
+   border-radius: 10px;
+}
+.btn-logout{
+    background-color: none;
+    padding: 0 20px;
+    color: #CCCCCC;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    border-radius: 10px;
+}
+.fa-user-alt{
+    background-color: none;
+    padding: 0 20px;
+    color: #CCCCCC;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    border-radius: 10px;
 }

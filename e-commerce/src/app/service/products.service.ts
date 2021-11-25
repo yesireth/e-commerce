@@ -12,8 +12,4 @@ export class ProductsService {
    console.log(this.http.get(this.Url)); 
   return this.http.get(this.Url)
  }
-
-
-
-
 }

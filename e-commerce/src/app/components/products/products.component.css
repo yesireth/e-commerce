@@ -11,17 +11,22 @@
     overflow: hidden;
 }
 .container-products{
-    display: grid;
-    grid-template-columns: 40vw 40vw;
+    /* display: grid;*/
+    display: flex;
+    flex-wrap: wrap;
+    grid-template-columns: 40vw 40vw; 
     gap:20px;
     justify-content: center;
 }
 .cards-products{
+    position: relative;
     display: grid;
+    grid-template-rows: 40% 45% 15%;
     justify-items: center;
     border-radius: 20px;
     background-color: #F8F6F8;
     padding: 10px;
+    width: 300px;
 }
 .img-products-container{
     position: relative;
@@ -51,3 +56,48 @@
     align-items: center;
     align-content: space-evenly;
 }
+.container-btn{
+    width: 100%;
+}
+button{
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    background-color: #F06C28;
+    height: 50px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 16px;
+}
+span{
+   position: absolute; 
+   right: 10px;
+   top: 10px;
+}
+.fa-check-circle{
+    color: green;
+    font-size: 25px;
+}
+
+
+
+
+.openBtn {
+    padding: 1em 30px;
+    width: 100%;
+    display: block;
+    -webkit-transition: all linear 0.15s;
+    transition: all linear 0.15s;
+    border-radius: 3px;
+    background: black;
+    font-size: 30px;
+    text-decoration: none;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fafafa;
+    z-index: 99;
+    position: fixed;
+    text-align: center; width: 100%; bottom: 0px; width: 100%;
+    opacity: 0.9;
+    }
+  

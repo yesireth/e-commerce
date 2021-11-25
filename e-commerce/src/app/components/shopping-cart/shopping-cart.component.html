@@ -7,19 +7,26 @@
     </header>
     <main class="main">
         <section class="container-products" >
-            <div class="cards-products" *ngFor="let product of data">
+
+
+            <div *ngIf="objOrder.products.length == 0" >
+                <img class="imgEmpty" src="https://cep.com.pe/wp-content/themes/mrtailor/images/empty_cart_retina.png" alt="empty-card">
+         
+            </div>
+            <div class="cards-products" *ngFor="let product of objOrder.products">
                 <div class="img-products-container">
                     <img src="{{product.image}}" alt="" class="img-products">
                 </div>
                 <div class="info-products">
                     <p class="name-products">{{product.title}}</p>
+                    <p class="name-products">{{product.description}}</p>
                     <p class="category">{{product.category}}</p>
                     <div class="price-box">
-                        <p class="product-price">${{product.price}}</p>
+                        <p class="product-price">${{product.price * product.qty| number: '1.0-2'}}</p>
                         <div class="container-amount">
-                            <button> <i class="fas fa-minus" ></i></button>
-                            <span class="name-amount">5</span>
-                            <button> <i class="fas fa-plus"></i></button>
+                            <button> <i class="fas fa-minus" (click)="changeAmount(-base,product)"></i></button>
+                            <span class="name-amount">{{product.qty}}</span>
+                            <button> <i class="fas fa-plus" (click)="changeAmount(base,product)"></i></button>
                         </div>
                     </div>
                 </div>
@@ -27,10 +34,18 @@
         </section>
     </main>
     <footer class="footer">
-        <p>
+        <!-- <p>
             <span>Total</span>
             <span class="total">$5</span>
-        </p>
-        <button class="btn-buy">Buy Now</button>
+        </p> -->
+        <button class="btn-buy">Buy Now  &nbsp;&nbsp; ${{total | number: '1.0-2'}}</button>
     </footer>
 </article>
+
+
+<!-- category: ""
+description: ""
+id: 2
+image: ""
+price: 22.3
+qty: 1 -->

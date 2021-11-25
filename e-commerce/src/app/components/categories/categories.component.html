@@ -1,4 +1,8 @@
-<button (click)="clickTabCategory('all')">All</button> 
-<div   *ngFor="let category of ComunicacionProducts.listCategory">
-    <button (click)="clickTabCategory(category)">{{category}}</button> 
+<section class="container-categories">
+<section class="container-scroll">
+<button class="btn-all clickTabCategory('all')"><p style="color: white;"> All</p></button> 
+<div *ngFor="let category of ComunicacionProducts.listCategory">
+    <button (click)="clickTabCategory(category)"><p style="color: white;"> {{category}}</p></button> 
 </div>
+</section>
+</section>

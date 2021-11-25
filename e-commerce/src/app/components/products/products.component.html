@@ -1,5 +1,9 @@
+
 <article>
     <app-header></app-header>
+
+    <div class="openBtn"  *ngIf="mostrarVentanaAgregado"> <i style="color:#fafafa;font-size:40px" class="far fa-check-circle"></i> Se añadió el producto al carrito</div>
+
     <main class="main">
         <app-categories></app-categories>
         <section class="container-products" >
@@ -11,6 +15,9 @@
                     <p class="name-products">{{product.title}}</p>
                     <p class="category">{{product.category}}</p>
                     <p class="product-price">${{product.price}}</p>
+                </div>
+                <div class="container-btn" >
+                    <button (click)="buyProducts(product)"><p style="color: white;">¡Lo quiero!</p></button>
                 </div>
             </div>
         </section>
