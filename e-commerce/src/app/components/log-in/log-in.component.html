@@ -2,7 +2,7 @@
     <img src="../../../assets/login-img.jpg" alt="login-img">
     <form  [formGroup]="logInForm" (ngSubmit)="logIn()">
         <input type="text" formControlName="username" placeholder="Ingrese su usuario" required>
-        <input type="text" formControlName="password" placeholder="Ingrese su contraseña" required> 
+        <input type="password" formControlName="password" placeholder="Ingrese su contraseña" required> 
         <button type="submit" routerLink='/products'>Ingresar</button>
     </form>
 </body>
